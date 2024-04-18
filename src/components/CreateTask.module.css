@@ -1,0 +1,29 @@
+.createTaskForm {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.createTaskForm input {
+    background: var(--gray-500);
+    color: var(--gray-300);
+    border: 0;
+    border-radius: 8px;
+    padding: 1rem;
+    flex: 1;
+}
+
+.createTaskForm button {
+    background: var(--blue-700);
+    color: var(--gray-100);
+    border-radius: 8px;
+    border: 0;
+    padding: 1rem;
+    font-weight: 700;
+    font-size: 0.875rem;
+    transition: background-color 0.1s;
+}
+
+.createTaskForm button:hover {
+    cursor: pointer;
+    filter: brightness(0.9);
+}
