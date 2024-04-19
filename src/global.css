@@ -16,7 +16,12 @@
     --purple-400: #8284FA;
     --purple-700: #5E60CE;
 
-    --orange-500: #E25858;
+    --red-500: #E25858;
+}
+
+input[type="text"]:focus {
+    outline: transparent;
+    box-shadow: 0 0 0 2px var(--purple-700);
 }
 
 
