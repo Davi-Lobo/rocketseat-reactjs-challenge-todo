@@ -2,10 +2,14 @@ import { Check, Trash } from 'phosphor-react';
 
 import styles from './Task.module.css';
 
-export function Task() {
+interface TaskProps {
+    isComplete?: boolean;
+}
+
+export function Task({isComplete = false} : TaskProps) {
     return(
         <li className={styles.taskItem}>
-            <div className={styles.taskContent}>
+            <div className={isComplete ? styles.taskCompleted : styles.taskContent}>
                 <label className={styles.customCheckbox}>
                     <input type="checkbox" />
                     <span>
