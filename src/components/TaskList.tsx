@@ -1,15 +1,35 @@
 import { Task } from './Task';
+import { TaskType } from './TasksContainer'
 
 import styles from './TaskList.module.css';
 
-export function TaskList() {
+interface TaskListProps {
+    tasks: TaskType[];
+    deleteTask: (id: Number) => void;
+};
+
+export function TaskList({tasks, deleteTask} : TaskListProps) {
+    if (tasks.length > 0) {
+        return(
+            <ul className={styles.taskList}>
+                
+                {tasks.map( (task, index) => {
+                    return(
+                        <Task
+                            key={task.id}
+                            task={task}
+                            onDeleteTask={deleteTask}
+                        />
+                    )
+                })}
+            </ul>
+        );
+    }
+
     return(
-        <ul className={styles.taskList}>
-            <Task/>
-            <Task/>
-            <Task/>
-            <Task/>
-            <Task/>
-        </ul>
+        <div className="empty">
+            <p>Você ainda não tem tarefas cadastradas</p>
+            <p>Crie tarefas e organize seus itens a fazer</p>
+        </div>
     );
 }

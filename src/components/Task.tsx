@@ -2,7 +2,20 @@ import { Check, Trash } from 'phosphor-react';
 
 import styles from './Task.module.css';
 
-export function Task() {
+interface TaskProps {
+    task: {
+        id: number;
+        text: String;
+        isCompleted: Boolean;
+    };
+    onDeleteTask: (id: Number) => void;
+};
+
+export function Task({task, onDeleteTask}: TaskProps) {
+    function handleDeleteTask() {
+        onDeleteTask(task.id);
+    }
+
     return(
         <li className={styles.taskItem}>
             <div className={styles.taskContent}>
@@ -12,8 +25,10 @@ export function Task() {
                         <Check size={12}/>
                     </span>
                 </label>
-                <p>Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.</p>
-                <button type="button">
+                
+                <p>{task.text}</p>
+
+                <button type="button" onClick={handleDeleteTask}>
                     <Trash size={18}/>
                 </button>
             </div>
