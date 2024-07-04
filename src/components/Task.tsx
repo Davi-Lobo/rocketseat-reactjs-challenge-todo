@@ -1,26 +1,43 @@
 import { Check, Trash } from 'phosphor-react';
 
 import styles from './Task.module.css';
+import { useState } from 'react';
 
 interface TaskProps {
     task: {
         id: number;
-        text: String;
-        isCompleted: Boolean;
+        text: string;
+        isCompleted: boolean;
     };
-    onDeleteTask: (id: Number) => void;
+    onToggleTask: ({ id, taskStatus }: { id: number; taskStatus: boolean }) => void;
+    onDeleteTask: (id: number) => void;
 };
 
-export function Task({task, onDeleteTask}: TaskProps) {
+export function Task({task, onToggleTask, onDeleteTask}: TaskProps) {
+    const [taskStatus, setTaskStatus] = useState<boolean>(task.isCompleted);
+
+    function handleToggleTask() {
+        setTaskStatus(!task.isCompleted);
+        onToggleTask({id: task.id, taskStatus: taskStatus});
+    }
+
     function handleDeleteTask() {
         onDeleteTask(task.id);
     }
 
     return(
         <li className={styles.taskItem}>
-            <div className={styles.taskContent}>
-                <label className={styles.customCheckbox}>
-                    <input type="checkbox" />
+            <div className={`${styles.taskContent} ${task.isCompleted ? styles.completed : ''}`}>
+                <label
+                    className={styles.customCheckbox}
+                    onClick={handleToggleTask}
+                >
+                    <input
+                        readOnly
+                        type="checkbox"
+                        checked={task.isCompleted}
+                    />
+
                     <span>
                         <Check size={12}/>
                     </span>

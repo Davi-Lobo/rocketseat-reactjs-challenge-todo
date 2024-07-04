@@ -5,10 +5,11 @@ import styles from './TaskList.module.css';
 
 interface TaskListProps {
     tasks: TaskType[];
-    deleteTask: (id: Number) => void;
+    toggleTask: ({ id, taskStatus }: { id: number; taskStatus: boolean }) => void;
+    deleteTask: (id: number) => void;
 };
 
-export function TaskList({tasks, deleteTask} : TaskListProps) {
+export function TaskList({tasks, toggleTask, deleteTask} : TaskListProps) {
     if (tasks.length > 0) {
         return(
             <ul className={styles.taskList}>
@@ -18,6 +19,7 @@ export function TaskList({tasks, deleteTask} : TaskListProps) {
                         <Task
                             key={task.id}
                             task={task}
+                            onToggleTask={toggleTask}
                             onDeleteTask={deleteTask}
                         />
                     )

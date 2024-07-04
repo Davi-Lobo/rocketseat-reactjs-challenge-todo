@@ -8,8 +8,8 @@ import styles from './TasksContainer.module.css';
 
 export interface TaskType {
     id: number;
-    text: String;
-    isCompleted: Boolean;
+    text: string;
+    isCompleted: boolean;
 }
 
 export function TasksContainer() {
@@ -46,7 +46,19 @@ export function TasksContainer() {
         setNewTaskText(e.target.value);
     }
 
-    function deleteTask(idToDelete: Number) {
+    function handleToggleTask({ id, taskStatus }: { id: number; taskStatus: boolean }) {
+        const updatedTasks = tasks.map((task) => {
+            if (task.id === id) {
+                return { ...task, isCompleted: taskStatus }
+            }
+
+            return { ...task }
+        });
+
+        setTasks(updatedTasks);
+    }
+
+      function handleDeleteTask(idToDelete: number) {
         const commentsWithoutDeletedOne = tasks.filter(task => {
             return task.id != idToDelete;
         });
@@ -73,7 +85,11 @@ export function TasksContainer() {
                     <strong className={styles.finishedTasks}>Tarefas concluídas <span>{completedTasksCounter} de {tasks.length}</span></strong>
                 </header>
 
-                <TaskList tasks={tasks} deleteTask={deleteTask}/>
+                <TaskList
+                    tasks={tasks}
+                    toggleTask={handleToggleTask}
+                    deleteTask={handleDeleteTask}
+                />
             </div>
         </>
     );
