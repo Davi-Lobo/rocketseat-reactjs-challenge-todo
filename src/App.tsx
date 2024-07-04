@@ -1,9 +1,8 @@
 import { Header } from "./components/Header";
+import { TasksContainer } from "./components/TasksContainer";
 
 import './global.css';
-
 import styles from './App.module.css';
-import { TasksContainer } from "./components/TasksContainer";
 
 
 export default function App() {

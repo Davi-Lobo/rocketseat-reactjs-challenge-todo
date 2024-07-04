@@ -1,6 +1,4 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
-
-
 import { PlusCircle } from 'phosphor-react';
 import { TaskList } from './TaskList';
 

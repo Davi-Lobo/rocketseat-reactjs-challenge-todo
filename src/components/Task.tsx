@@ -1,7 +1,7 @@
 import { Check, Trash } from 'phosphor-react';
+import { useState } from 'react';
 
 import styles from './Task.module.css';
-import { useState } from 'react';
 
 interface TaskProps {
     task: {
