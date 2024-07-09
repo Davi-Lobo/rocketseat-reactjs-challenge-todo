@@ -1,3 +1,42 @@
 .taskList {
     list-style: none;
 }
+
+.empty {
+    border-radius: 8px;
+    border-top: 1px solid var(--gray-400);
+    padding: 60px 24px;
+    text-align: center;
+}
+
+.empty img {
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.empty p {
+    color: var(--gray-300);
+    line-height: 1.4;
+}
+
+
+@media (min-width: 1024px) {
+    .taskList {
+        max-height: 525px;
+        overflow-y: auto;    
+    }
+
+    .taskList::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .taskList::-webkit-scrollbar-track {
+        background: var(--gray-400);
+        border-radius: 4px;
+    }
+
+    .taskList::-webkit-scrollbar-thumb {
+        background: var(--gray-300);
+        border-radius: 4px;
+    }
+}
